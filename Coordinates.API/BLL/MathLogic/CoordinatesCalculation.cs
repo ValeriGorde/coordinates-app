@@ -37,7 +37,7 @@ public static class CoordinatesCalculation
 
         double finalDistant = 2*EARTH_RADIUS*Math.Asin(Math.Sqrt(rootExpression));
 
-        return Math.Round(finalDistant, 6);
+        return finalDistant;
     }
 
     /// <summary>
@@ -54,8 +54,8 @@ public static class CoordinatesCalculation
             metersDistant += GetHaversineDistance(coordinates[i], coordinates[i + 1]);
         }
 
-        fullDistance.Metres = Math.Round(metersDistant, 6);
-        fullDistance.Miles = Math.Round(ConvertToMiles(metersDistant), 6);
+        fullDistance.Metres = Math.Round(metersDistant, 3);
+        fullDistance.Miles = Math.Round(ConvertToMiles(metersDistant), 3);
 
         return fullDistance;
     }

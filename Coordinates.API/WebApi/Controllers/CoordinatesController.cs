@@ -20,7 +20,7 @@ public class CoordinatesController(ICoordinatesRepository coordinatesRepository)
     [HttpGet("{count}", Name = nameof(GetCoordinates))] 
     [ProducesResponseType(200, Type = typeof(List<Coordinate>))]
     [ProducesResponseType(400)]
-    public ActionResult<List<Coordinate>> GetCoordinates(int count)
+    public IActionResult GetCoordinates(int count)
     {
         if(count < 1)
         {
@@ -42,7 +42,7 @@ public class CoordinatesController(ICoordinatesRepository coordinatesRepository)
     // POST: api/coordinates
     [HttpPost]
     [ProducesResponseType(200, Type = typeof(Distance))]
-    public ActionResult<Distance> FindFullCoordinateDistance(List<Coordinate> coordinates)
+    public IActionResult FindFullCoordinateDistance(List<Coordinate> coordinates)
     {
         Distance distance = _coordinatesRepository.GetDistance(coordinates);
         return Ok(distance);
