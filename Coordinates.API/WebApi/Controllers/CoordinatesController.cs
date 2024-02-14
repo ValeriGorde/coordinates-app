@@ -1,4 +1,4 @@
-﻿using Coordinates.API.DAL.Models; // Coordinate
+﻿global using Coordinates.API.DAL.Models; // Coordinate
 using Coordinates.API.DAL.Repositories; // ICoordinareRepostory
 using Microsoft.AspNetCore.Mvc;
 

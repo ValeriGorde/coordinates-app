@@ -1,5 +1,4 @@
 ﻿using Coordinates.API.BLL.MathReseach;
-using Coordinates.API.DAL.Models;
 
 namespace Coordinates.API.DAL.Repositories;
 

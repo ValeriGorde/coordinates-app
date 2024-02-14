@@ -1,6 +1,4 @@
-﻿using Coordinates.API.DAL.Models;
-
-namespace Coordinates.API.DAL.Repositories;
+﻿namespace Coordinates.API.DAL.Repositories;
 
 public interface ICoordinatesRepository
 {

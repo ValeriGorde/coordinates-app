@@ -1,6 +1,4 @@
-﻿using Coordinates.API.DAL.Models;
-
-namespace Coordinates.API.BLL.MathReseach;
+﻿namespace Coordinates.API.BLL.MathReseach;
 
 public static class CoordinatesCalculation
 {
