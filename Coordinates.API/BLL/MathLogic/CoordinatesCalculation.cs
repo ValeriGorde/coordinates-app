@@ -10,7 +10,7 @@ namespace Coordinates.API.BLL.MathReseach
         public static double GetRandomCoordinate(int minValue, int maxValue)
         {
             Random randomNum = new();
-            return randomNum.NextDouble() * (maxValue - minValue) + minValue;
+            return Math.Round(randomNum.NextDouble() * (maxValue - minValue) + minValue, 6);
         }
 
         public static double ConvertToRadians(double degreeValue)
