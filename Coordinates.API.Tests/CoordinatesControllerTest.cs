@@ -50,8 +50,8 @@ namespace Coordinates.API.Tests
             // Arrange
             Distance expectedDistance = new()
             {
-                Metres = 3937.089,
-                Miles = 2.446
+                Metres = 3515.539,
+                Miles = 2.184
             };
 
             // Act
@@ -80,8 +80,8 @@ namespace Coordinates.API.Tests
             // Arrange
             Distance expectedDistance = new()
             {
-                Metres = 0.0,
-                Miles = 0.0
+                Metres = 0d,
+                Miles = 0d
             };
 
             List<Coordinate> emptyList = new();

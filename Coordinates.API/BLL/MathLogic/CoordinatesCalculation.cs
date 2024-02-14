@@ -9,13 +9,13 @@ public static class CoordinatesCalculation
     {
         Random randomNum = new();
         double coordinate = randomNum.NextDouble() * (maxValue - minValue) + minValue;
-        
+
         return Math.Round(coordinate, 6);
     }
 
     public static double ConvertToRadians(double degreeValue)
     {
-        return Math.PI/180 * degreeValue;
+        return Math.PI / 180 * degreeValue;
     }
 
     public static double ConvertToMiles(double meterValue)
@@ -29,19 +29,22 @@ public static class CoordinatesCalculation
     /// <returns>Расстояние в метрах</returns>
     public static double GetHaversineDistance(Coordinate firstCoordinate, Coordinate secondCoordinate)
     {
+        double firstLatitudeToRadians = ConvertToRadians(firstCoordinate.Latitude);
+        double secondLatitudeToRadians = ConvertToRadians(secondCoordinate.Latitude);
+
         double latitudeDifference = ConvertToRadians(secondCoordinate.Latitude - firstCoordinate.Latitude);
         double longitudeDifference = ConvertToRadians(secondCoordinate.Longitude - firstCoordinate.Longitude);
 
-        double rootExpression = Math.Pow(Math.Sin(latitudeDifference / 2), 2) + Math.Cos(firstCoordinate.Latitude) *
-            Math.Cos(secondCoordinate.Latitude) * Math.Pow(Math.Sin(longitudeDifference / 2), 2);
+        double rootExpression = Math.Pow(Math.Sin(latitudeDifference / 2), 2) + Math.Cos(firstLatitudeToRadians) *
+            Math.Cos(secondLatitudeToRadians) * Math.Pow(Math.Sin(longitudeDifference / 2), 2);
 
-        double finalDistant = 2*EARTH_RADIUS*Math.Asin(Math.Sqrt(rootExpression));
+        double finalDistant = 2 * EARTH_RADIUS * Math.Asin(Math.Sqrt(rootExpression));
 
         return finalDistant;
     }
 
     /// <summary>
-    /// Получение общего расстояния между всеми точками
+    /// Получение суммарного расстояния между всеми точками
     /// </summary>
     public static Distance GetFullDistance(List<Coordinate> coordinates)
     {
@@ -49,7 +52,7 @@ public static class CoordinatesCalculation
 
         double metersDistant = 0d;
 
-        for(int i = 0; i < coordinates.Count - 1; i++)
+        for (int i = 0; i < coordinates.Count - 1; i++)
         {
             metersDistant += GetHaversineDistance(coordinates[i], coordinates[i + 1]);
         }
