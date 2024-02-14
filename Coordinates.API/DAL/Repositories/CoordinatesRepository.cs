@@ -36,7 +36,10 @@ namespace Coordinates.API.DAL.Repositories
 
         public Distance GetDistance(List<Coordinate> coordinates)
         {
-            return coordinates.Count < 2 ? new Distance { Metres = 0, Miles = 0 } : CoordinatesCalculation.GetFullDistance(coordinates);
+            Distance distance = coordinates.Count < 2 ? new Distance { Metres = 0, Miles = 0 } : 
+                CoordinatesCalculation.GetFullDistance(coordinates);
+
+            return distance;
         }
     }
 }

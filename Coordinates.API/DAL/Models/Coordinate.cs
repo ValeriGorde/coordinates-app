@@ -7,10 +7,12 @@ namespace Coordinates.API.DAL.Models
     /// </summary>
     public class Coordinate
     {
-        [Range(-90, 90)]
+        [Required(ErrorMessage = "Необходимо указать Широту")]
+        [Range(-90, 90, ErrorMessage = "Широта должна находиться в диапазоне [-90; 90]")]
         public double Latitude { get; set; }
 
-        [Range(-180, 180)]
+        [Required(ErrorMessage = "Небходимо указать Долготу")]
+        [Range(-180, 180, ErrorMessage = "Долгота должна находиться в диапазоне [-180; 180]")]
         public double Longitude { get; set; }
     }
 }
