@@ -10,6 +10,12 @@ public class CoordinatesController(ICoordinatesRepository coordinatesRepository)
 {
     private readonly ICoordinatesRepository _coordinatesRepository = coordinatesRepository;
 
+    /// <summary>
+    /// Получение случайных координат (широта и долгота)
+    /// </summary>
+    /// <remarks>Количество не должно быть меньше 1</remarks>
+    /// <param name="count">Количество необходимых координат</param>
+
     // GET: api/coordinates?count=<int>
     [HttpGet("{count}", Name = nameof(GetCoordinates))] 
     [ProducesResponseType(200, Type = typeof(List<Coordinate>))]
@@ -25,6 +31,13 @@ public class CoordinatesController(ICoordinatesRepository coordinatesRepository)
 
         return Ok(randomCoordinates);
     }
+
+    /// <summary>
+    /// Нахождение суммарной дистанции между заданных координат
+    /// </summary>
+    /// <remarks>Широта задается в диапазоне [-90;90]
+    /// Долгота задается в диапазоне [-180;180]</remarks>
+    /// <param name="coordinates">Массив содержащий пару значений координат</param>
 
     // POST: api/coordinates
     [HttpPost]
