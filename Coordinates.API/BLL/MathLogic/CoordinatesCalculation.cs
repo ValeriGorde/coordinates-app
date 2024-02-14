@@ -10,7 +10,9 @@ namespace Coordinates.API.BLL.MathReseach
         public static double GetRandomCoordinate(int minValue, int maxValue)
         {
             Random randomNum = new();
-            return Math.Round(randomNum.NextDouble() * (maxValue - minValue) + minValue, 6);
+            double coordinate = randomNum.NextDouble() * (maxValue - minValue) + minValue;
+            
+            return Math.Round(coordinate, 6);
         }
 
         public static double ConvertToRadians(double degreeValue)
@@ -37,7 +39,7 @@ namespace Coordinates.API.BLL.MathReseach
 
             double finalDistant = 2*EARTH_RADIUS*Math.Asin(Math.Sqrt(rootExpression));
 
-            return finalDistant;
+            return Math.Round(finalDistant, 6);
         }
 
         /// <summary>
@@ -47,12 +49,15 @@ namespace Coordinates.API.BLL.MathReseach
         {
             Distance fullDistance = new();
 
+            double metersDistant = 0d;
+
             for(int i = 0; i < coordinates.Count - 1; i++)
             {
-                fullDistance.Metres += GetHaversineDistance(coordinates[i], coordinates[i + 1]);
+                metersDistant += GetHaversineDistance(coordinates[i], coordinates[i + 1]);
             }
 
-            fullDistance.Miles = ConvertToMiles(fullDistance.Metres);
+            fullDistance.Metres = Math.Round(metersDistant, 6);
+            fullDistance.Miles = Math.Round(ConvertToMiles(metersDistant), 6);
 
             return fullDistance;
         }
