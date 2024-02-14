@@ -10,8 +10,8 @@ namespace Coordinates.API.WebApi.Controllers
     {
         private readonly ICoordinatesRepository _coordinatesRepository = coordinatesRepository;
 
-        // GET: coordinates?count=<int>
-        [HttpGet("{count}", Name = nameof(GetCoordinates))] //??
+        // GET: api/coordinates?count=<int>
+        [HttpGet("{count}", Name = nameof(GetCoordinates))] 
         [ProducesResponseType(200, Type = typeof(List<Coordinate>))]
         [ProducesResponseType(400)]
         public ActionResult<List<Coordinate>> GetCoordinates(int count)
@@ -26,6 +26,13 @@ namespace Coordinates.API.WebApi.Controllers
             return Ok(randomCoordinates);
         }
 
-
+        // POST: api/coordinates
+        [HttpPost]
+        [ProducesResponseType(200, Type = typeof(Distance))]
+        public ActionResult<Distance> FindFullCoordinateDistance(List<Coordinate> coordinates)
+        {
+            Distance distance = _coordinatesRepository.GetDistance(coordinates);
+            return Ok(distance);
+        }
     }
 }
