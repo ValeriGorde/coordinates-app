@@ -2,8 +2,6 @@ using Coordinates.API.DAL.Models;
 using Coordinates.API.DAL.Repositories;
 using Coordinates.API.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
-using Xunit.Sdk;
 
 namespace Coordinates.API.Tests
 {
@@ -28,7 +26,7 @@ namespace Coordinates.API.Tests
             IActionResult result = _controller.GetCoordinates(count);
 
             // Assert
-            Assert.IsType<OkObjectResult>(result as OkObjectResult);
+            Assert.IsType<OkObjectResult>(result);
         }
 
         [Fact]
@@ -41,7 +39,7 @@ namespace Coordinates.API.Tests
             IActionResult result = _controller.GetCoordinates(count);
 
             // Assert];
-            Assert.IsType<BadRequestObjectResult>(result as BadRequestObjectResult);
+            Assert.IsType<BadRequestObjectResult>(result);
         }
 
         [Fact]
@@ -59,6 +57,8 @@ namespace Coordinates.API.Tests
 
 
             // Assert
+            Assert.NotNull(result);
+
             var actualDistance = result.Value as Distance;
             Assert.Equal(expectedDistance.Metres, actualDistance.Metres);
             Assert.Equal(expectedDistance.Miles, actualDistance.Miles);
@@ -88,9 +88,11 @@ namespace Coordinates.API.Tests
 
             // Act
             var result = _controller.FindFullCoordinateDistance(emptyList) as OkObjectResult;
-            
+
 
             // Assert
+            Assert.NotNull(result);
+
             var actualDistance = result.Value as Distance;
             Assert.Equal(expectedDistance.Metres, actualDistance.Metres);
             Assert.Equal(expectedDistance.Miles, actualDistance.Miles);
